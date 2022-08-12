@@ -1,0 +1,31 @@
+syntax="proto3";
+
+message RegisterRequest{
+  int32 Id = 1;
+  string Name =2;
+  string EmailAddress =3;
+  string DeliveryAddress =4;
+  string PhoneNumber =5;
+  string Password =6;
+}
+
+message LoginRequest{
+  string Email =1;
+  string Password =2;
+}
+
+message AddCoffeeToCart{
+  int32 CoffeeId =1;
+}
+
+message Response{
+  string Message =1;
+}
+
+service CoffeeUserServices{
+  rpc Register(RegisterRequest) returns (Response);
+  rpc Login(LoginRequest) returns (Response);
+  rpc AddCoffee(AddCoffeeToCart) returns (Response);
+}
+
+option go_package="./coffeeuser";

@@ -1,0 +1,47 @@
+syntax="proto3";
+
+
+message AddCoffeeRequest{
+  int32 Id=1;
+  string name=2;
+  double price=3;
+}
+
+message AddCoffeeResponse{
+  string name=1;
+  double price=2;
+}
+
+message CreateCoffeeResponse{
+  string message=1;
+  string coffeeName =2;
+}
+
+message FindCoffeeById {
+  int32 id =1;
+}
+
+message DeleteCoffeeOrder {
+  int32 id =1;
+}
+
+message DeleteOrderResponse{
+  string message =1;
+}
+
+message UpdateCoffee{
+  AddCoffeeRequest request =1;
+}
+
+message GetAllCoffee{
+  repeated AddCoffeeRequest Allcoffees =1;
+}
+
+service CoffeeService{
+  rpc AddCoffee(AddCoffeeRequest) returns (AddCoffeeResponse);
+  rpc FindCoffeeByID(FindCoffeeById) returns (AddCoffeeResponse);
+  rpc UpdateCoffeeInfo(UpdateCoffee) returns (AddCoffeeResponse);
+  rpc DeleteCoffeeInfo(DeleteCoffeeOrder) returns (DeleteOrderResponse);
+  rpc FindAllCoffee(GetAllCoffee) returns (AddCoffeeResponse);
+}
+option go_package="./coffee";
