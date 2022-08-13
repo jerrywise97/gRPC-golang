@@ -25,7 +25,7 @@ message Response{
 service CoffeeUserServices{
   rpc Register(RegisterRequest) returns (Response);
   rpc Login(LoginRequest) returns (Response);
-  rpc AddCoffee(AddCoffeeToCart) returns (Response);
+  rpc AddCoffeeInCart(AddCoffeeToCart) returns (Response);
 }
 
-option go_package="./coffeeuser";
+option go_package="./coffee";

@@ -9,6 +9,11 @@ import (
 type Server struct {
 }
 
+func (s *Server) AddCoffeeInCart(ctx context.Context, cart *AddCoffeeToCart) (*Response, error) {
+	//TODO implement me
+	panic("implement me")
+}
+
 type Coffee struct {
 	Id    int
 	Name  string
@@ -27,10 +32,11 @@ func (s *Server) AddCoffee(ctx context.Context, request *AddCoffeeRequest) (resp
 		Price: request.Price,
 		Name:  request.Name,
 	}
+	response = &AddCoffeeResponse{}
 	coffeestore = append(coffeestore, coffee)
 	response.Name = request.Name
 	response.Price = request.Price
-	return response, errors.New("Coffee not added")
+	return response, nil
 }
 
 func (s *Server) FindCoffeeByID(ctx context.Context, id *FindCoffeeById) (response *AddCoffeeResponse, err error) {

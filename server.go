@@ -8,6 +8,11 @@ import (
 )
 
 func main() {
+
+	//var collection *mongo.Collection
+
+	//collection := client.Database("coffee_store").Collection("user")
+
 	listener, err := net.Listen("tcp", ":9000")
 	if err != nil {
 		log.Fatalf("error:: %v", err)
@@ -16,8 +21,28 @@ func main() {
 	s := coffee.Server{}
 	grpcServer := grpc.NewServer()
 	coffee.RegisterCoffeeServiceServer(grpcServer, &s)
+
+	coffee.RegisterCoffeeUserServicesServer(grpcServer, &s)
 	err = grpcServer.Serve(listener)
 	if err != nil {
 		log.Fatalf("error:: %v", err)
 	}
 }
+
+//var collection *mongo.Collection
+//var ctx = context.TODO()
+//
+//func init() {
+//	clientOptions := options.Client().ApplyURI("mongodb://localhost:27017/")
+//	client, err := mongo.Connect(ctx, clientOptions)
+//	if err != nil {
+//		log.Fatal(err)
+//	}
+//
+//	err = client.Ping(ctx, nil)
+//	if err != nil {
+//		log.Fatal(err)
+//	}
+//
+//	collection = client.Database("tasker").Collection("tasks")
+//}
