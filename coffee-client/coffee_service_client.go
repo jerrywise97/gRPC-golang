@@ -21,19 +21,19 @@ func main() {
 
 		}
 	}(conn)
-	//coffeeService := coffee.NewCoffeeServiceClient(conn)
-	//response, err := coffeeService.AddCoffee(context.TODO(), &coffee.AddCoffeeRequest{
-	//	Name:  "coffee black",
-	//	Price: 30.00,
-	//})
-	//if err != nil {
-	//	log.Fatal(err)
-	//}
-	//log.Println(response)
+	coffeeService := coffee.NewCoffeeServiceClient(conn)
+	response, err := coffeeService.AddCoffee(context.TODO(), &coffee.AddCoffeeRequest{
+		Name:  "coffee black",
+		Price: 30.00,
+	})
+	if err != nil {
+		log.Fatal(err)
+	}
+	log.Println(response)
 
 	userService := coffee.NewCoffeeUserServicesClient(conn)
 	addUseresponse, err := userService.Register(context.TODO(), &coffee.RegisterRequest{
-		Name:         "John Doe",
+		Name:         "John G",
 		PhoneNumber:  "0099990",
 		EmailAddress: "Johndoe@gmail.com",
 		Password:     "DoeJohn",
@@ -43,4 +43,12 @@ func main() {
 	}
 	log.Println(addUseresponse)
 
+	loginUser, err := userService.Login(context.TODO(), &coffee.LoginRequest{
+		Email:    "Johndoe@gmail.com",
+		Password: "DoeJohn",
+	})
+	if err != nil {
+		log.Fatal(err)
+	}
+	log.Println(loginUser)
 }
