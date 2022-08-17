@@ -27,10 +27,11 @@ pipeline {
                 echo 'BUILD EXECUTION STARTED'
                 sh 'go version'
                 sh 'go get ./...'
-                sh 'docker build -t jerrywise97/gPRC_coffee_shop' .
+                sh 'docker build -t jerrywise97/gPRC_coffee_shop'.
             }
         }
     }
+}
     
     
     
