@@ -22,27 +22,27 @@ pipeline {
                 sh 'go get -u golang.org/x/lint/golint'
             }
         }
-        stage("unit-test") {
-            steps {
-                echo 'UNIT TEST EXECUTION STARTED'
-                sh 'make unit-tests'
-            }
-        }
-        stage("functional-test") {
-            steps {
-                echo 'FUNCTIONAL TEST EXECUTION STARTED'
-                sh 'make functional-tests'
-            }
-        }
+//         stage("unit-test") {
+//             steps {
+//                 echo 'UNIT TEST EXECUTION STARTED'
+//                 sh 'make unit-tests'
+//             }
+//         }
+//         stage("functional-test") {
+//             steps {
+//                 echo 'FUNCTIONAL TEST EXECUTION STARTED'
+//                 sh 'make functional-tests'
+//             }
+//         }
 
-        // stage("build") {
-        //     steps {
-        //         echo 'BUILD EXECUTION STARTED'
-        //         sh 'go version'
-        //         sh 'go get ./...'
-        //         sh 'docker build . -t shadowshotx/product-go-micro'
-        //     }
-        // }
+        stage("build") {
+            steps {
+                echo 'BUILD EXECUTION STARTED'
+                sh 'go version'
+                sh 'go get ./...'
+                sh 'docker build . -t jerrywise97/gPRC coffee shop'
+            }
+        }
         // stage('deliver') {
         //     agent any
         //     steps {
