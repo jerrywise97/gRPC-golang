@@ -22,6 +22,7 @@ pipeline {
             steps {
                 echo 'BUILD EXECUTION STARTED'
                 sh 'go version'
+		sh 'docker version'
                 sh 'go get ./...'
 //                 sh 'docker build -t jerrywise97/gprc-coffee-shop:v1 .'
 			    script {
