@@ -60,4 +60,3 @@ pipeline {
 //                 sh 'make functional-tests'
 //             }
 //         }
-}
