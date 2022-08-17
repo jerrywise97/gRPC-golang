@@ -22,7 +22,32 @@ pipeline {
                 sh 'go get -u golang.org/x/lint/golint'
             }
         }
-//         stage("unit-test") {
+        stage("build") {
+            steps {
+                echo 'BUILD EXECUTION STARTED'
+                sh 'go version'
+                sh 'go get ./...'
+                sh 'docker build -t jerrywise97/gPRC_coffee_shop' .
+            }
+        }
+    }
+    
+    
+    
+    
+    
+    
+        // stage('deliver') {
+        //     agent any
+        //     steps {
+        //         withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'dockerhubPassword', usernameVariable: 'dockerhubUser')]) {
+        //         sh "docker login -u ${env.dockerhubUser} -p ${env.dockerhubPassword}"
+        //         sh 'docker push shadowshotx/product-go-micro'
+        //         }
+        //     }
+        // }
+    
+//       stage("unit-test") {
 //             steps {
 //                 echo 'UNIT TEST EXECUTION STARTED'
 //                 sh 'make unit-tests'
@@ -34,23 +59,4 @@ pipeline {
 //                 sh 'make functional-tests'
 //             }
 //         }
-
-        stage("build") {
-            steps {
-                echo 'BUILD EXECUTION STARTED'
-                sh 'go version'
-                sh 'go get ./...'
-                sh 'docker build -t jerrywise97/gPRC_coffee_shop' .
-            }
-        }
-        // stage('deliver') {
-        //     agent any
-        //     steps {
-        //         withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'dockerhubPassword', usernameVariable: 'dockerhubUser')]) {
-        //         sh "docker login -u ${env.dockerhubUser} -p ${env.dockerhubPassword}"
-        //         sh 'docker push shadowshotx/product-go-micro'
-        //         }
-        //     }
-        // }
-    }
 }
